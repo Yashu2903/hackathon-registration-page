@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Confirmation Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles_confirmation.css">
+</head>
+<body>
+    <header>
+        <h1>Registration Confirmation</h1>
+    </header>
+    <div class="content">
+        <h1>Thank you for registering!</h1>
+        <p>Your registration has been successfully submitted. Below are your registration details:</p>
+        <div>
+            <strong>Name:</strong> <span id="name"></span>
+        </div>
+        <div>
+            <strong>Email:</strong> <span id="email"></span>
+        </div>
+        <div>
+            <strong>Phone Number:</strong> <span id="phone"></span>
+        </div>
+        <div>
+            <strong>Skill Set:</strong> <span id="skill"></span>
+        </div>
+        <div>
+            <strong>Level of Experience:</strong> <span id="experience"></span>
+        </div>
+        <p><a href="index.html">Back to Home</a></p>
+    </div>
+    <footer>
+        <p>&copy; 2024 TECH INNOVATION CHALLENGE. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('name').textContent = localStorage.getItem('name');
+        document.getElementById('email').textContent = localStorage.getItem('email');
+        document.getElementById('phone').textContent = localStorage.getItem('phone');
+        document.getElementById('skill').textContent = localStorage.getItem('skill');
+        document.getElementById('experience').textContent = localStorage.getItem('experience');
+    </script>
+</body>
+</html>

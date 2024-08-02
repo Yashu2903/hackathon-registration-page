@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fee Calculator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles_fee_calc.css">
+</head>
+
+<body>
+    <header>
+        <h1>Fee Calculator</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="registration.html">Register</a>
+        <a href="team_formation.html">Team Formation</a>
+        <a href="feecalc.html">Fee Calculator</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="content">
+        <form id="feeForm" oninput="calculateFee()">
+            <label for="np">Number of Participants:</label>
+            <input type="number" id="np" name="np" min="1" required><br><br>
+
+            <label for="pt">Type of Participant:</label>
+            <select name="pt" id="pt" required>
+                <option value="Student">Student</option>
+                <option value="Professional">Professional</option>
+            </select><br><br>
+
+            <div class="button-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        
+        <h2>Calculated Fee</h2>
+        <output id="calculatedFee">$0</output>
+    </div>
+    <footer>
+        <p>&copy; 2024 TECH INNOVATION CHALLENGE. All Rights Reserved.</p>
+    </footer>
+    <script>
+        function calculateFee() {
+            const numParticipants = document.getElementById('np').value;
+            const participantType = document.getElementById('pt').value;
+            let feePerParticipant;
+
+            if (participantType === 'Student') {
+                feePerParticipant = 50;
+            } else if (participantType === 'Professional') {
+                feePerParticipant = 100;
+            }
+
+            const totalFee = numParticipants * feePerParticipant;
+            document.getElementById('calculatedFee').value = `$${totalFee}`;
+        }
+
+        document.getElementById('feeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            calculateFee();
+        });
+    </script>
+</body>
+</html>

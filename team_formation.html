@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Team Formation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles_team_formation.css">
+    <script>
+        function generateFields() {
+            const numMembers = document.getElementById('numMembers').value;
+            const container = document.getElementById('inputContainer');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= numMembers; i++) {
+                const label = document.createElement('label');
+                label.for = 'member' + i;
+                label.textContent = 'Team Member ' + i + ':';
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = 'member' + i;
+                input.name = 'member' + i;
+                input.required = true;
+                input.oninput = updateTeamSummary;
+
+                container.appendChild(label);
+                container.appendChild(input);
+                container.appendChild(document.createElement('br'));
+                container.appendChild(document.createElement('br'));
+            }
+        }
+
+        function updateTeamSummary() {
+            const teamName = document.getElementById('tname').value;
+            const teamLeader = document.getElementById('tleader').value;
+            const numMembers = document.getElementById('numMembers').value;
+            const project = document.getElementById('project').value;
+            let summary = `
+                <p><strong>Team Name:</strong> ${teamName}</p>
+                <p><strong>Team Leader:</strong> ${teamLeader}</p>
+            `;
+
+            for (let i = 1; i <= numMembers; i++) {
+                const member = document.getElementById('member' + i).value;
+                summary += `<p><strong>Team Member ${i}:</strong> ${member}</p>`;
+            }
+
+            summary += `<p><strong>Project Category:</strong> ${project}</p>`;
+            document.getElementById('teamSummary').innerHTML = summary;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('numMembers').addEventListener('change', generateFields);
+            document.getElementById('team').addEventListener('input', updateTeamSummary);
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Team Formation</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="registration.html">Register</a>
+        <a href="team_formation.html">Team Formation</a>
+        <a href="feecalc.html">Fee Calculator</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="content">
+        <form id="team">
+            <label for="tname">Team Name:</label>
+            <input type="text" id="tname" name="tname" required><br><br>
+
+            <label for="tleader">Team Leader:</label>
+            <input type="text" id="tleader" name="tleader" required><br><br>
+
+            <label for="numMembers">Number of Team Members:</label>
+            <select id="numMembers" name="numMembers" required>
+                <option value="" disabled selected>Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select><br><br>
+
+            <div id="inputContainer">
+
+            </div>
+
+            <label for="project">Project Category:</label>
+            <select name="project" id="project" required>
+                <option value="Web Development">Web Development</option>
+                <option value="App Development">App Development</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Blockchain">Blockchain</option>
+            </select><br><br>
+
+            <div class="button-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        
+        <h2>Team Summary</h2>
+        <output id="teamSummary"></output>
+    </div>
+    <footer>
+        <p>&copy; 2024 TECH INNOVATION CHALLENGE. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

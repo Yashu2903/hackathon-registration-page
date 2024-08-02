@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registration</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles_registration.css">
+</head>
+<body>
+    <header>
+        <h1>Registration Form</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="registration.html">Register</a>
+        <a href="team_formation.html">Team Formation</a>
+        <a href="feecalc.html">Fee Calculator</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="content">
+        <form id="registrationForm">
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required><br><br>
+
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" required><br><br>
+
+            <label for="mail">Email:</label>
+            <input type="email" id="mail" name="mail" required><br><br>
+
+            <label for="phno">Phone Number:</label>
+            <input type="tel" id="phno" name="phno" pattern="[0-9]{10}" required><br><br>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+
+            <label for="address">Address:</label><br>
+            <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+
+            <label for="skills">Skill Set:</label>
+            <select name="skills" id="skills" required>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="project manager">Project Manager</option>
+            </select><br><br>
+
+            <p>Experience</p>
+            <div class="radio-group">
+                <label><input type="radio" id="Beginner" name="exp" value="Beginner" required> Beginner</label>
+                <label><input type="radio" id="Intermediate" name="exp" value="Intermediate" required> Intermediate</label>
+                <label><input type="radio" id="Advanced" name="exp" value="Advanced" required> Advanced</label>
+            </div><br>
+
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="terms" required>
+                    I agree to the terms and conditions
+                </label><br><br>
+
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 TECH INNOVATION CHALLENGE. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = `${document.getElementById('fname').value} ${document.getElementById('lname').value}`;
+            const email = document.getElementById('mail').value;
+            const phone = document.getElementById('phno').value;
+            const skill = document.getElementById('skills').value;
+            const experience = document.querySelector('input[name="exp"]:checked').value;
+            
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('phone', phone);
+            localStorage.setItem('skill', skill);
+            localStorage.setItem('experience', experience);
+
+            window.location.href = 'confirmation.html';
+        });
+    </script>
+</body>
+</html>
